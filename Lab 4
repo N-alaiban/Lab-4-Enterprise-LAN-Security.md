@@ -1,0 +1,98 @@
+# Lab 04 – Enterprise LAN Security Assessment
+
+This repository contains my Lab 04 Enterprise LAN Security Assessment, including network design, protocol security analysis, and incident response.
+
+---
+
+## Part 1 – Network Architecture (OSI Layers 1–3)
+
+The WBMUD network was designed using three main operational segments and one DMZ segment. The IT network represents the office environment, the OT network represents industrial control systems, and the Remote Pump Station represents a remote operational site connected through WAN links.
+
+### Topology
+![Network Topology](topology.png)
+
+### OSI Layer 1 (Physical)
+The Physical layer is responsible for transmitting raw bits over a physical medium. In this lab, cables, ports, and powered devices represent Layer 1.
+
+### OSI Layer 2 (Data Link)
+Switches use MAC addresses to forward frames within the local network.
+
+![MAC Table](mac-table.png)
+
+### OSI Layer 3 (Network)
+Routers use IP addressing and routing tables to forward packets between networks.
+
+![IP Interface](ip-interface.png)
+
+![Routing Table](routing-table.png)
+
+### Connectivity Verification
+Successful ping tests were performed from the IT workstation.
+
+![Ping Results](ping.png)
+
+---
+
+## Part 2 – Protocol Security (OSI Layers 4–7)
+
+### TCP vs UDP
+TCP uses a three-way handshake (SYN, SYN-ACK, ACK), making it more secure and reliable. UDP is connectionless and faster but less secure.
+
+### HTTP vs HTTPS
+HTTPS uses TLS/SSL encryption to protect data, while HTTP sends data in plaintext.
+
+![HTTP vs HTTPS](http-https.png)
+
+### SSH vs Telnet
+SSH encrypts remote sessions, while Telnet sends data in cleartext.
+
+![SSH](ssh.png)
+
+---
+
+## Part 3 – Shellshock Vulnerability Analysis
+
+Building on the previous network design and protocol analysis, the following section explores a real-world vulnerability scenario and incident response within the WBMUD network.
+
+Shellshock is a critical vulnerability found in the Bash shell, allowing attackers to execute malicious commands remotely by exploiting environment variables.
+
+In this lab scenario, the attacker node in the DMZ could exploit this vulnerability to gain access to the OT web server and potentially move laterally within the network.
+
+---
+
+## Part 4 – Incident Response
+
+### Attack Path
+The attack begins from the DMZ attacker node and targets the OT web server. After compromising the server, the attacker can move laterally within the network.
+
+### Root Cause
+The attack was caused by an unpatched vulnerability and weak access control mechanisms.
+
+### Remediation Plan
+- Apply system patches regularly  
+- Configure firewalls  
+- Use HTTPS instead of HTTP  
+- Use SSH instead of Telnet  
+- Implement monitoring and intrusion detection  
+
+---
+
+## Part 5 – OSI Model Summary
+
+| OSI Layer | Example |
+|----------|--------|
+| Layer 1 | Physical cables |
+| Layer 2 | MAC addresses |
+| Layer 3 | IP routing |
+| Layer 4 | TCP/UDP |
+| Layer 7 | HTTP/HTTPS |
+
+---
+
+## Reflection
+
+In this lab, I learned how network design and security are closely connected, especially in critical infrastructure environments. Proper segmentation between IT, OT, and remote networks reduces risks significantly.
+
+The Shellshock vulnerability demonstrated how a single unpatched system can compromise an entire network. I also learned the importance of secure protocols such as HTTPS and SSH.
+
+Overall, this lab improved my understanding of both networking and cybersecurity principles.
